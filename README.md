@@ -1,8 +1,8 @@
-# 🛒 Carro Basico (TwinCAT 3)
+# 🛒 Carro (TwinCAT 3)
 
 ## 📝 Descripción Funcional
 
-El proyecto **Carro Básico** resuelve el clásico problema de automatización conocido como **«el carro va y viene»**, que consiste en un móvil que se desplaza longitudinalmente entre los dos extremos (izquierdo y derecho) de un tramo de vía.
+El proyecto **Carro** resuelve el clásico problema de automatización conocido como **«el carro va y viene»**, que consiste en un móvil que se desplaza longitudinalmente entre los dos extremos (izquierdo y derecho) de un tramo de vía.
 
 <p align="center">
   <img src="docs/assets/images/Carro_Basico_Esquematico.png" alt="Esquematico del Carro Básico" />
@@ -36,7 +36,8 @@ El funcionamiento del carro básico es como sigue.
 
 El proyecto contempla diferentes variantes de complejidad progresiva:
 
-1. **Carro pulsado**. El carro inicia un viaje de ida y vuelta, únicamente, cuando estando en su posición inicial se acciona el pulsador de marcha.
+1. **Carro básico**. El carro inicia un viaje de ida y vuelta, únicamente, cuando estando en su posición inicial se acciona (nivel) el pulsador de marcha
+2. **Carro pulsado**. El carro inicia un viaje de ida y vuelta, únicamente, cuando estando en su posición inicial se pulsa (flanco) el pulsador de marcha.
 1. **Carro temporizado**. El carro se detiene durante un determinado tiempo ($T_{espera}$) sobre el final de carrera derecha antes de iniciar el camino de regreso hacia su posición inicial.
 1. **Carro limitado**. El carro realiza un determinado número de viajes de ida y vuelta (tarea) consecutivos cada vez que, estando en su posición inicial, se acciona el pulsador de marcha.
 1. **Carro señalizado**. La lámpara de marcha se enciende de forma permanente para indicar que el carro está en funcionamiento y parpadea para indicar que el carro está en reposo.
