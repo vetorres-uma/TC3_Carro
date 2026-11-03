@@ -30,9 +30,9 @@ VAR
     i_FinalCarreraDerecha AT %I*: BOOL;
     
     // Salidas
-    o_MarchaIzquierda AT %I*: BOOL;
-    o_MarchaDerecha AT %I*: BOOL;
-    o_LamparaMarcha AT %I*: BOOL;
+    o_MarchaIzquierda AT %Q*: BOOL;
+    o_MarchaDerecha AT %Q*: BOOL;
+    o_LamparaMarcha AT %Q*: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>

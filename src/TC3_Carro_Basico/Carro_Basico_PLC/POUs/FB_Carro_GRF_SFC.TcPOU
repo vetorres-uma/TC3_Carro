@@ -14,7 +14,7 @@ END_VAR
 VAR
     // Bloques funcionales
     FlancoPulsadorMarcha: R_TRIG;
-    Intermitencia: FB_Blink;
+    Intermitencia: BLINK;
     
     // Entradas
     i_PulsadorMarcha AT %I*: BOOL;
@@ -22,9 +22,9 @@ VAR
     i_FinalCarreraDerecha AT %I*: BOOL;
     
     // Salidas
-    o_MarchaIzquierda AT %I*: BOOL;
-    o_MarchaDerecha AT %I*: BOOL;
-    o_LamparaMarcha AT %I*: BOOL;
+    o_MarchaIzquierda AT %Q*: BOOL;
+    o_MarchaDerecha AT %Q*: BOOL;
+    o_LamparaMarcha AT %Q*: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -177,7 +177,7 @@ END_VAR
                         <o>
                           <v n="AttributeId">{700a583f-b4d4-43e4-8c14-629c7cd3bec8}</v>
                           <o n="Value" t="StringValue">
-                            <v n="Value">"a_FlancoPulsadorMarcha_Evaluar"</v>
+                            <v n="Value">"a_FlancoPulsadorMarcha_Calcular"</v>
                             <v n="DefaultValue">""</v>
                           </o>
                           <v n="Id">19L</v>
@@ -704,7 +704,7 @@ END_VAR
                         <o>
                           <v n="AttributeId">{700a583f-b4d4-43e4-8c14-629c7cd3bec8}</v>
                           <o n="Value" t="StringValue">
-                            <v n="Value">"a_TiempoEspera_Actualizar"</v>
+                            <v n="Value">"a_TiempoEspera_Calcular"</v>
                             <v n="DefaultValue">""</v>
                           </o>
                           <v n="Id">85L</v>
@@ -1240,7 +1240,7 @@ END_VAR
                         <o>
                           <v n="AttributeId">{a6b08bd8-b696-47e3-9cbf-7408b61c9ff8}</v>
                           <o n="Value" t="StringValue">
-                            <v n="Value">"a_ManiobrasPendientes_Actualizar"</v>
+                            <v n="Value">"a_ManiobrasPendientes_Calcular"</v>
                             <v n="DefaultValue">""</v>
                           </o>
                           <v n="Id">130L</v>
@@ -1901,7 +1901,7 @@ END_VAR
         </XmlArchive>
       </SFC>
     </Implementation>
-    <Action Name="a_FlancoPulsadorMarcha_Evaluar" Id="{270c1a7b-d542-42d7-8ec5-6ffc85e0e9de}">
+    <Action Name="a_FlancoPulsadorMarcha_Calcular" Id="{270c1a7b-d542-42d7-8ec5-6ffc85e0e9de}">
       <Implementation>
         <ST><![CDATA[FlancoPulsadorMarcha(CLK := i_PulsadorMarcha);
 ]]></ST>
@@ -1911,11 +1911,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[Intermitencia(Enable := S0.x);
 
-o_LamparaMarcha := (S0.x AND Intermitencia.Q) OR S1.x OR S2.x OR S3.x OR S4.x;
+o_LamparaMarcha := (S0.x AND Intermitencia.OUT) OR S1.x OR S2.x OR S3.x OR S4.x;
 ]]></ST>
       </Implementation>
     </Action>
-    <Action Name="a_ManiobrasPendientes_Actualizar" Id="{5d28dd82-84ca-4aee-a032-3a689682c7af}">
+    <Action Name="a_ManiobrasPendientes_Calcular" Id="{5d28dd82-84ca-4aee-a032-3a689682c7af}">
       <Implementation>
         <ST><![CDATA[IF (ManiobrasPendientes > 0) THEN
     ManiobrasPendientes := ManiobrasPendientes - 1;
@@ -1929,10 +1929,12 @@ END_IF;
 ]]></ST>
       </Implementation>
     </Action>
-    <Action Name="a_TiempoEspera_Actualizar" Id="{e0af001b-8951-4d88-ba0a-a0414f07cb8b}">
+    <Action Name="a_TiempoEspera_Calcular" Id="{e0af001b-8951-4d88-ba0a-a0414f07cb8b}">
       <Implementation>
         <ST><![CDATA[IF TiempoEspera >= S2.t THEN
     TiempoPendiente := TiempoEspera - S2.t;
+ELSE 
+    TiempoPendiente := T#0S;
 END_IF;
 ]]></ST>
       </Implementation>
@@ -2032,26 +2034,5 @@ END_IF;
         </TypeList>
       </XmlArchive>
     </ObjectProperties>
-    <LineIds Name="FB_Carro_GRF_SFC.a_FlancoPulsadorMarcha_Evaluar">
-      <LineId Id="2" Count="0" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Carro_GRF_SFC.a_LamparaMarcha">
-      <LineId Id="1" Count="0" />
-      <LineId Id="3" Count="2" />
-    </LineIds>
-    <LineIds Name="FB_Carro_GRF_SFC.a_ManiobrasPendientes_Actualizar">
-      <LineId Id="2" Count="1" />
-      <LineId Id="1" Count="0" />
-      <LineId Id="4" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Carro_GRF_SFC.a_ManiobrasPendientes_Reiniciar">
-      <LineId Id="2" Count="0" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Carro_GRF_SFC.a_TiempoEspera_Actualizar">
-      <LineId Id="2" Count="2" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
