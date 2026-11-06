@@ -20,8 +20,8 @@ VAR
     MarchaIzquierdaFuturo: BOOL;
     
     // Bloques funcionales
-    FlancoPulsadorMarcha: R_TRIG;
-    Intermitencia: FB_Blink;
+    Flanco_PulsadorMarcha: R_TRIG;
+    Intermitencia: BLINK;
     TemporizadorEspera: TON;
     ContadorManiobras: CTD := (Q := TRUE);
     
@@ -31,9 +31,9 @@ VAR
     i_FinalCarreraDerecha AT %I*: BOOL;
     
     // Salidas
-    o_MarchaIzquierda AT %I*: BOOL;
-    o_MarchaDerecha AT %I*: BOOL;
-    o_LamparaMarcha AT %I*: BOOL;
+    o_MarchaIzquierda AT %Q*: BOOL;
+    o_MarchaDerecha AT %Q*: BOOL;
+    o_LamparaMarcha AT %Q*: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -71,7 +71,7 @@ END_VAR
                       <v n="BoxType">"FB_Blink"</v>
                       <o n="Instance" t="Operand">
                         <v n="Operand">"Intermitencia"</v>
-                        <v n="Type">"FB_Blink"</v>
+                        <v n="Type">"BLINK"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
                         <v n="Address">""</v>
@@ -190,7 +190,7 @@ END_VAR
                     <o>
                       <v n="BoxType">"R_TRIG"</v>
                       <o n="Instance" t="Operand">
-                        <v n="Operand">"FlancoPulsadorMarcha"</v>
+                        <v n="Operand">"Flanco_PulsadorMarcha"</v>
                         <v n="Type">"R_TRIG"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
@@ -1115,7 +1115,7 @@ END_VAR
                             </o>
                             <o>
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"FlancoPulsadorMarcha.Q"</v>
+                                <v n="Operand">"Flanco_PulsadorMarcha.Q"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>

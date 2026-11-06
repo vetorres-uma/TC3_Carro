@@ -8,7 +8,7 @@
     <DownloadApplicationInfo>true</DownloadApplicationInfo>
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
-    <Name>Carro_Basico_PLC</Name>
+    <Name>Carro_PLC</Name>
     <ProgramVersion>3.1.4024.0</ProgramVersion>
     <Application>{0109a079-1d38-4260-b8bd-92919a129165}</Application>
     <TypeSystem>{66a0ebcf-2f5e-4ed0-b113-92253e020e9c}</TypeSystem>
@@ -22,9 +22,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_Blink.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_Carro_DRC_LD.TcPOU">
@@ -45,7 +42,7 @@
     <Compile Include="Visualization Manager.TcVMO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="VISUs\V_Carro.TcVIS">
+    <Compile Include="VISUs\VIS_Carro.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
@@ -120,7 +117,7 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Carro_Basico_PLC.tmc">
+    <None Include="Carro_PLC.tmc">
       <SubType>Content</SubType>
     </None>
   </ItemGroup>

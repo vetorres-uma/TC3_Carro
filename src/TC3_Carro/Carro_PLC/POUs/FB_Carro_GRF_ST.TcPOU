@@ -16,7 +16,7 @@ VAR
     
     // Bloques funcionales
     FlancoPulsadorMarcha: R_TRIG;
-    Intermitencia: FB_Blink;
+    Intermitencia: BLINK;
     TemporizadorEspera: TON;
     
     // Entradas
@@ -32,7 +32,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// BLOQUES FUNCIONALES
-Intermitencia(Enable := (Estado = E_REPOSO));
+Intermitencia(Enable := (Estado = E_ESPERA), TIMELOW := T#500MS, TIMEHIGH := T#500MS);
 TemporizadorEspera(IN := (Estado = E_ESPERA), PT := TiempoEspera);
 
 // FUNCION DE ESTADO
@@ -80,28 +80,8 @@ END_CASE;
 // FUNCION DE SALIDA
 o_MarchaDerecha := (Estado = E_DERECHA);
 o_MarchaIzquierda := (Estado = E_IZQUIERDA);
-o_LamparaMarcha := (Estado <> E_REPOSO) OR Intermitencia.Q;
+o_LamparaMarcha := (Estado <> E_REPOSO) OR Intermitencia.OUT;
 ]]></ST>
     </Implementation>
-    <LineIds Name="FB_Carro_GRF_ST">
-      <LineId Id="609" Count="0" />
-      <LineId Id="720" Count="0" />
-      <LineId Id="691" Count="0" />
-      <LineId Id="613" Count="1" />
-      <LineId Id="751" Count="0" />
-      <LineId Id="615" Count="0" />
-      <LineId Id="752" Count="0" />
-      <LineId Id="721" Count="1" />
-      <LineId Id="616" Count="0" />
-      <LineId Id="753" Count="0" />
-      <LineId Id="617" Count="0" />
-      <LineId Id="754" Count="0" />
-      <LineId Id="618" Count="6" />
-      <LineId Id="755" Count="0" />
-      <LineId Id="625" Count="8" />
-      <LineId Id="757" Count="0" />
-      <LineId Id="634" Count="17" />
-      <LineId Id="71" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

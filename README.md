@@ -1,34 +1,34 @@
 # 🛒 Carro (TwinCAT 3)
 
-## 📝 Descripción Funcional
+## 📝 Presentación
 
-El proyecto **Carro** resuelve el clásico problema de automatización conocido como **«el carro va y viene»**, que consiste en un móvil que se desplaza longitudinalmente entre los dos extremos (izquierdo y derecho) de un tramo de vía.
+El proyecto **Carro** es una adaptación del clásico problema de automatización conocido como **«el carro va y viene»**, que básicamente consiste en un móvil que se desplaza longitudinalmente entre los dos extremos (izquierdo y derecho) de un tramo de vía.
 
 <p align="center">
-  <img src="docs/assets/images/Carro_Basico_Esquematico.png" alt="Esquematico del Carro Básico" />
+  <img src="docs/assets/images/carro-esquematico.png" alt="Esquematico del Carro Básico" />
 </p>
 
-## 🧩 Elementos constituyentes
+## 🧩 Elementos Constituyentes
 
 ### Parte Operativa
 
-- Un **motor** con dos señales de mando para la marcha (marcha y marcha).
-- Un par de **sensores finales de carrera** (izquierdo y derecho).
+- Un **motor** con dos señales de mando para la marcha (izquierda y derecha).
+- Un par de **sensores finales de carrera** (izquierdo y derecho) para determinar su posición.
 
- ### Parte de Relación
- 
- Consiste en un panel de operador básico compuesto únicamente por:
+### Parte de Relación
+
+Panel de operador básico compuesto únicamente por:
 
 - Un **pulsador de marcha**, para iniciar el funcionamiento.
 - Una **lámpara de marcha**, para indicar el estado del sistema.
 
-## 🔄 Descripción del proceso
+## 🔄 Descripción Funcional
 
-El funcionamiento del carro básico es como sigue.
+El funcionamiento del **carro básico** es como sigue.
 
-1.  El carro se pone en marcha hacia la derecha cuando se acciona el pulsador de marcha.
-2.  Cuando el carro alcanza el final de carrera derecha invierte el sentido de la marcha.
-3.  El carro se detiene al alcanzar, de nuevo, el final de carrera izquierda.
+1. El carro se pone en marcha hacia la derecha cuando se acciona el pulsador de marcha.
+2. Cuando el carro alcanza el final de carrera derecha invierte el sentido de la marcha.
+3. El carro se detiene al alcanzar, de nuevo, el final de carrera izquierda.
 
 - **Condición inicial**: carro detenido sobre el final de carrera izquierda.
 
@@ -36,15 +36,14 @@ El funcionamiento del carro básico es como sigue.
 
 El proyecto contempla diferentes variantes de complejidad progresiva:
 
-1. **Carro básico**. El carro inicia un viaje de ida y vuelta, únicamente, cuando estando en su posición inicial se acciona (nivel) el pulsador de marcha
-2. **Carro pulsado**. El carro inicia un viaje de ida y vuelta, únicamente, cuando estando en su posición inicial se pulsa (flanco) el pulsador de marcha.
-1. **Carro temporizado**. El carro se detiene durante un determinado tiempo ($T_{espera}$) sobre el final de carrera derecha antes de iniciar el camino de regreso hacia su posición inicial.
-1. **Carro limitado**. El carro realiza un determinado número de viajes de ida y vuelta (tarea) consecutivos cada vez que, estando en su posición inicial, se acciona el pulsador de marcha.
-1. **Carro señalizado**. La lámpara de marcha se enciende de forma permanente para indicar que el carro está en funcionamiento y parpadea para indicar que el carro está en reposo.
+1. **Carro Pulsado**. El carro inicia un viaje de ida y vuelta únicamente cuando, estando en su posición inicial, se realiza una pulsación sobre el pulsador de marcha.
+2. **Carro temporizado**. El carro se detiene durante un determinado tiempo ($T_{espera}$) sobre el final de carrera derecho antes de iniciar el camino de regreso hacia su posición inicial.
+3. **Carro limitado**. El carro realiza un determinado número de viajes de ida y vuelta (tarea) consecutivos cada vez que, estando en su posición inicial, se acciona el pulsador de marcha.
+4. **Carro Señalizado**. La lámpara de marcha permanece encendida mientras el carro está en funcionamiento y parpadea cuando está en reposo.
 
 ## ⇄ Entradas y salidas
 
-| Nombre | Tipo | Origen | Descripción |
+| Etiqueta | Tipo | Dirección | Descripción |
 | :--- | :--- | :--- | :--- |
 | `PM` | `BOOL` | Entrada | Pulsador de Marcha |
 | `FCI` | `BOOL` | Entrada | Final de Carrera Izquierda |
@@ -57,35 +56,35 @@ El proyecto contempla diferentes variantes de complejidad progresiva:
 
 ## 📄 Especificación funcional
 
-Las siguientes especificaciones funcionales describen el comportamiento del carro (lógica de control) de una manera precisa utilizando los **Diagramas de Relés y Contactos** y el lenguaje **GRAFCET**.
+Las siguientes especificaciones funcionales describen con precisión el comportamiento del carro (lógica de control) mediante **Diagramas de Relés y Contactos** y el lenguaje **GRAFCET**.
 
-- [Diagrama de relés y contactos (PDF)](docs/diagrams/Carro_Basico_DRC.pdf)
-- [Diagrama grafcet (PDF)](docs/diagrams/Carro_Basico_GRF.pdf)
+- [Diagrama de relés y contactos (PDF)](docs/diagrams/carro-drc.pdf)
+- [Diagrama grafcet (PDF)](docs/diagrams/carro-grf.pdf)
 
---- 
+---
 
 ## 📂 Estructura simplificada del Repositorio
 
 ```text
-TC3_Carro_Basico/
+TC3_Carro/
 ├── docs/
 |   └── diagrams/
-│       ├── Carro_Basico_DRC.pdf   <-- Diagrama de Relés y Contactos (PDF)
-│       └── Carro_Basico_GRF.pdf   <-- Diagrama Grafcet (PDF)
+│       ├── Carro_DRC.pdf   <-- Diagrama de Relés y Contactos (PDF)
+│       └── Carro_GRF.pdf   <-- Diagrama Grafcet (PDF)
 └── src/
-    ├── TC3_Carro_Basico.sln       <-- Solución de Visual Studio (TwinCAT XAE)
-    └── TC3_Carro_Basico/          <-- Proyecto TwinCAT
-        └── Carro_Basico_PLC/      <-- Proyecto PLC
+    ├── TC3_Carro.sln       <-- Solución de Visual Studio (TwinCAT XAE)
+    └── TC3_Carro/          <-- Proyecto TwinCAT
+        └── Carro_PLC/      <-- Proyecto PLC
 ```
 
 ---
 
 ## 💻 Implementación
 
-Se implementa el funcionamiento del carro va y viene (pulsado, temporizado, limitado y señalizado), a partir de sus especificaciones (diagramas de relés y diagramas grafcet) utilizando diferentes lenguajes de programación de la norma IEC 61131-3: *Diagrama Ladder* (LD), *Sequential Function Chart* (SFC) y *Structured Text* (ST).
+El funcionamiento del carro va y viene (básico, pulsado, temporizado, limitado y señalizado) se implementa a partir de sus especificaciones (diagramas de relés y GRAFCET) mediante los lenguajes de programación de la norma **IEC 61131-3**: *Diagrama Ladder* (LD), *Sequential Function Chart* (SFC) y *Structured Text* (ST).
 
-- DRC → [LD]
-- GRF → [SFC / ST / LD]
+- DRC ➔ \[LD\]
+- GRF ➔ \[SFC / ST / LD\]
 
 ---
 
@@ -105,11 +104,11 @@ Para descargar, compilar y ejecutar este proyecto en el entorno de TwinCAT 3, si
 
 1. **Clonar el Repositorio:**
 
-```bash
-git clone https://github.com/vetorres-uma/TC3_Carro_Basico.git
-```
+    ```bash
+    git clone https://github.com/vetorres-uma/TC3_Carro.git
+    ```
 
-2. **Abrir el Proyecto:** abra el archivo `.sln` (Solución) ubicado en la carpeta principal utilizando el entorno de ingeniería **TwinCAT XAE** (integrado en Visual Studio).
+1. **Abrir el Proyecto:** abra el archivo `.sln` (Solución) ubicado en la carpeta principal utilizando el entorno de ingeniería **TwinCAT XAE** (integrado en Visual Studio).
 1. **Selección del Controlador:** seleccione el simulador **UmRT_Default** o controlador local o remoto (**Choose Runtime System**).
 1. **Activación de Configuración:** en el modo **Configuración**, active la configuración (**Activate Configuration**) y reinicie TwinCAT en modo **Ejecución (Run Mode)**.
 1. **Carga del Código:** en el entorno PLC, inicie la sesión y descargue el programa al PLC (**Login**).
@@ -125,7 +124,7 @@ Este proyecto se utiliza con fines educativos. Las contribuciones, sugerencias o
 
 ## 🧑‍💻 Autor
 
-- **Autor Principal:** Victor Torres (@vetorres-uma)
+- **Autor Principal:** Víctor Torres (@vetorres-uma)
 
 ---
 
@@ -134,3 +133,5 @@ Este proyecto se utiliza con fines educativos. Las contribuciones, sugerencias o
 Este proyecto es de código abierto y está disponible bajo la **Licencia Pública General GNU (GPL)**.
 
 - Consulte el archivo `LICENSE` para más detalles.
+
+---
